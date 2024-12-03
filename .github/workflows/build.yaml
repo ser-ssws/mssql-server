@@ -38,8 +38,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./${{ matrix.sqlserver }}/
-          file: Dockerfile.${{ matrix.variant }}
+          context: .
+          file: ./${{ matrix.sqlserver }}/Dockerfile.${{ matrix.variant }}
           push: true
           tags: ghcr.io/n1xx1/mssql-server:${{ matrix.sqlserver }}-${{ matrix.version }}-${{ matrix.variant }}
           build-args: |
