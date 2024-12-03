@@ -1,7 +1,8 @@
 name: build
 
 on:
-  workflow_dispatch:
+  push:
+    branches: ["main"]
 
 jobs:
   docker:
@@ -9,11 +10,12 @@ jobs:
 
     strategy:
       matrix:
-        variant: ["fts-polybase"]
         include:
-          - sqlserver: "2019"
+          - variant: fts-polybase
+            sqlserver: "2019"
             version: CU29-GDR1-ubuntu-20.04
-          - sqlserver: "2019"
+          - variant: fts-polybase
+            sqlserver: "2019"
             version: latest
 
     steps:
@@ -36,7 +38,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./${{ matrix.sqlserver }}
+          context: ./${{ matrix.sqlserver }}/
           file: Dockerfile.${{ matrix.variant }}
           push: true
           tags: ghcr.io/n1xx1/mssql-server:${{ matrix.sqlserver }}-${{ matrix.version }}-${{ matrix.variant }}
