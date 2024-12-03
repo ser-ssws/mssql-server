@@ -41,6 +41,6 @@ jobs:
           context: .
           file: ./${{ matrix.sqlserver }}/Dockerfile.${{ matrix.variant }}
           push: true
-          tags: ghcr.io/n1xx1/mssql-server:${{ matrix.sqlserver }}-${{ matrix.version }}-${{ matrix.variant }}
+          tags: ghcr.io/ser-ssws/mssql-server:${{ matrix.sqlserver }}-${{ matrix.version }}-${{ matrix.variant }}
           build-args: |
             IMAGE_VERSION=${{ matrix.version }}
