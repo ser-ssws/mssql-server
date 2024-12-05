@@ -5,11 +5,14 @@ FROM mcr.microsoft.com/mssql/server:2022-${IMAGE_VERSION}
 
 USER root
 
+ENV IMAGE_VERSION=${IMAGE_VERSION}
+ENV UBUNTU_VERSION=${UBUNTU_VERSION}
+
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/${UBUNTU_VERSION}/mssql-server-2022.list)" && \
+RUN add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/${UBUNTU_VERSION}/mssql-server-2022.list)" && \
     apt-get install -y mssql-server-fts && \
     apt-get install -y mssql-server-polybase
 
