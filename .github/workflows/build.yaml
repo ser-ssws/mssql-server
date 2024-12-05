@@ -21,6 +21,12 @@ jobs:
           - variant: fts-polybase
             sqlserver: "2019"
             version: latest
+          - variant: fts-polybase
+            sqlserver: "2022"
+            version: CU16-ubuntu-22.04
+          - variant: fts-polybase
+            sqlserver: "2022"
+            version: latest
 
     steps:
       - name: Checkout

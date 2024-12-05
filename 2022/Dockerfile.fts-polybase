@@ -1,7 +1,7 @@
 ARG IMAGE_VERSION="latest"
-ARG UBUNTU_VERSION="20.04"
+ARG UBUNTU_VERSION="22.04"
 
-FROM mcr.microsoft.com/mssql/server:2019-${IMAGE_VERSION}
+FROM mcr.microsoft.com/mssql/server:2022-${IMAGE_VERSION}
 
 USER root
 
@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 
-    RUN add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/${UBUNTU_VERSION}/mssql-server-2019.list)" && \
+    RUN add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/${UBUNTU_VERSION}/mssql-server-2022.list)" && \
     apt-get install -y mssql-server-fts && \
     apt-get install -y mssql-server-polybase
 
